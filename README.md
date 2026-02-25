@@ -4,33 +4,22 @@
 This project analyzes music streaming data using PySpark Structured APIs. It processes listening logs and song metadata to derive insights about user preferences, listening habits, and genre loyalty. The analysis demonstrates key Spark concepts including DataFrames, window functions, aggregations, and transformations.
 
 ## Dataset Description
-**listening_logs.csv**
-
+### listening_logs.csv
 Contains user listening history with the following fields:
+- `user_id`: Unique identifier for each user (user_1 to user_100)
+- `song_id`: Unique identifier for each song (song_1 to song_50)
+- `timestamp`: Date and time of listening event (March 2025)
+- `duration_sec`: Duration of listening in seconds (30-300 seconds)
 
-user_id: Unique identifier for each user (user_1 to user_100)
-
-song_id: Unique identifier for each song (song_1 to song_50)
-
-timestamp: Date and time of listening event (March 2025)
-
-duration_sec: Duration of listening in seconds (30-300 seconds)
-
-**songs_metadata.csv**
-
+### songs_metadata.csv
 Contains song information with the following fields:
-
-song_id: Unique identifier for each song (matches listening_logs)
-
-title: Song title
-
-artist: Artist name (artist_1 to artist_20)
-
-genre: Music genre (Pop, Rock, Jazz, Classical, Hip-Hop)
-
-mood: Song mood (Happy, Sad, Energetic, Chill)
-
+- `song_id`: Unique identifier for each song (matches listening_logs)
+- `title`: Song title
+- `artist`: Artist name (artist_1 to artist_20)
+- `genre`: Music genre (Pop, Rock, Jazz, Classical, Hip-Hop)
+- `mood`: Song mood (Happy, Sad, Energetic, Chill)
 ## Repository Structure
+
 Hands-on-L6-main/
 
 ├── datagen.py                 # Data generation script
