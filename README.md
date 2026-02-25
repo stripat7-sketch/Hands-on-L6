@@ -199,3 +199,14 @@ Before starting the assignment, ensure you have the following software installed
    ```
 
 ## Errors and Resolutions
+
+| Error | Cause | Resolution |
+|-------|-------|------------|
+| `command not found: pip` | pip not in PATH | Use `python3 -m pip install pyspark` |
+| `getSubject is not supported` | Java 24+ incompatible with Spark | Set Java 17: `export JAVA_HOME=$(/usr/libexec/java_home -v 17)` |
+| `NameError: name 'user_favorite_genge' is not defined` | Typo in main.py | Change `user_favorite_genge.show()` to `user_favorite_genre.show()` |
+| `No such file or directory: 'input_generator.py'` | Wrong filename | Use `python3 datagen.py` instead |
+| `No such file or directory: 'listening_logs.csv'` | Data not generated | Run `python3 datagen.py` first |
+| `ModuleNotFoundError: No module named 'pyspark'` | PySpark not installed | Run `python3 -m pip install pyspark` |
+| `Unable to load native-hadoop library` | Missing Hadoop libraries | Warning only - can be ignored |
+| `Outputs directory not created` | Script failed | Check error messages and fix underlying issue |
