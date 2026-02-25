@@ -91,68 +91,50 @@ outputs/
    └── _SUCCESS
 
 ## Tasks and Outputs
-**Task 1: User Favorite Genres**
 
-Description: For each user, determine their most-listened genre based on total listening time.
+### Task 1: User Favorite Genres
+**Description:** For each user, determine their most-listened genre based on total listening time.
 
-Logic:
-Join listening logs with song metadata
+**Logic:**
+- Join listening logs with song metadata
+- Aggregate total listening time per user per genre
+- Use window functions to rank genres per user
+- Select the top-ranked genre for each user
 
-Aggregate total listening time per user per genre
+**Output:** `user_favorite_genres/` - Contains `user_id`, `genre`, `total_listen_time`
 
-Use window functions to rank genres per user
+### Task 2: Average Listen Time
+**Description:** Calculate average listening duration per user and per song.
 
-Select the top-ranked genre for each user
+**Logic:**
+- Group by user_id and compute average duration_sec
+- Group by song_id and compute average duration_sec
+- Calculate overall average for reference
 
-Output: user_favorite_genres/ - Contains user_id, genre, total_listen_time
+**Output:**
+- `avg_listen_per_user/` - Contains `user_id`, `avg_listen_duration`
+- `avg_listen_per_song/` - Contains `song_id`, `avg_listen_duration`
 
-**Task 2: Average Listen Time**
+### Task 3: Genre Loyalty Scores
+**Description:** Create a custom loyalty score for each user-genre combination and rank the top 10.
 
-Description: Calculate average listening duration per user and per song.
+**Logic:**
+- Calculate listen count and total time per user-genre
+- Calculate total listening time per user
+- Create loyalty score formula: `loyalty_score = listen_count * (total_time / user_total_time)`
+- Sort by loyalty score descending and take top 10
 
-Logic:
-Group by user_id and compute average duration_sec
+**Output:** `top_10_loyalty_scores/` - Contains `user_id`, `genre`, `loyalty_score`
 
-Group by song_id and compute average duration_sec
+### Task 4: Night Owl Users
+**Description:** Identify users who listen to music between 12 AM and 5 AM.
 
-Calculate overall average for reference
+**Logic:**
+- Extract hour from timestamp
+- Filter records where hour is between 0 and 5
+- Select distinct user_ids
 
-Output:
-
-avg_listen_per_user/ - Contains user_id, avg_listen_duration
-
-avg_listen_per_song/ - Contains song_id, avg_listen_duration
-
-**Task 3: Genre Loyalty Scores**
-
-Description: Create a custom loyalty score for each user-genre combination and rank the top 10.
-
-Logic:
-Calculate listen count and total time per user-genre
-
-Calculate total listening time per user
-
-Create loyalty score formula:
-
-loyalty_score = listen_count * (total_time / user_total_time)
-
-Sort by loyalty score descending and take top 10
-
-Output: top_10_loyalty_scores/ - Contains user_id, genre, loyalty_score
-
-**Task 4: Night Owl Users**
-
-Description: Identify users who listen to music between 12 AM and 5 AM.
-
-Logic:
-Extract hour from timestamp
-
-Filter records where hour is between 0 and 5
-
-Select distinct user_ids
-
-Output: night_listeners/ - Contains user_id of night listeners
-
+**Output:** `night_listeners/` - Contains `user_id` of night listeners
 ## Execution Instructions
 ## *Prerequisites*
 
